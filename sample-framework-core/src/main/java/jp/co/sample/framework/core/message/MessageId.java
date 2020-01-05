@@ -3,7 +3,7 @@ package jp.co.sample.framework.core.message;
 /**
  * メッセージID.
  */
-public enum MessageId {
+public enum MessageId implements MessageIdIf {
 
   /** 未定義. */
   UNDEFINED,
@@ -27,14 +27,20 @@ public enum MessageId {
   /** 対象のBean[{0}]が複数見つかりました。. */
   F0009E,
   // C～ COMMON
+  /** {0} start {1} {2}. */
+  C0001I,
+  /** {0} normal-end {1} {2}. */
+  C0002I,
+  /** {0} abnormal-end {1} {2}. */
+  C0003E,
   // B～ BUSINESS LOGIC
   // P～ PRESENTATION
   // U～ 利用統計ログ
-  /** {0} 開始. */
+  /** {0} start. */
   U0001I,
-  /** {0} 正常終了. */
+  /** {0} normal-end. */
   U0002I,
-  /** {0} 異常終了. */
+  /** {0} abnormal-end. */
   U0003E,
   ;
 

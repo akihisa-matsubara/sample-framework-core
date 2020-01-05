@@ -31,7 +31,7 @@ public class SearchConditionBuilder {
   private final Map<String, Object> queryParams = new LinkedHashMap<>();
 
   /**
-   * クエリパラメータMapにパラメーターを格納する.
+   * クエリパラメータMapにパラメーターを格納します.
    * 格納順番がそのままwhere節の出力順となる為、アクセスパスを考慮して格納すること.
    *
    * @param column 項目

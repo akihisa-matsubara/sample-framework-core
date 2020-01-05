@@ -14,13 +14,18 @@ import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * ExceptionHandlerWrapper実装.
+ */
 @Slf4j
 public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
 
   /** Error Logger. */
   private static final Logger ERROR_LOGGER = LoggerFactory.getLogger(LoggerVo.ERROR_LOGGER.getCode());
-
+  /** Redirectパラメーター. */
   private static final String REDIRECT = "?faces-redirect=true";
+
+  /** ExceptionHandler. */
   private final ExceptionHandler wrapped;
 
   /**
@@ -41,7 +46,13 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
   }
 
   /**
-   * {@inheritDoc}
+   * <P>
+   * 例外制御.
+   * </P>
+   * <ul>
+   * <li>発生した例外をエラーログに出力します.</li>
+   * <li>ProtectedViewExceptionの場合、不正操作用画面へ遷移します.</li>
+   * </ul>
    */
   @Override
   public void handle() {

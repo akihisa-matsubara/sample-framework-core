@@ -3,6 +3,7 @@ package jp.co.sample.framework.core.util;
 import jp.co.sample.common.constant.SystemProperty;
 import jp.co.sample.framework.core.exception.dto.ErrorMessage;
 import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.MessageIdIf;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -44,7 +45,7 @@ public class MessageUtils {
    * @param params パラメーター
    * @return メッセージ
    */
-  public static String getMessage(MessageId messageId, String... params) {
+  public static String getMessage(MessageIdIf messageId, String... params) {
     return MessageFormat.format(messages.getString(messageId.name()), (Object[])params);
   }
 
