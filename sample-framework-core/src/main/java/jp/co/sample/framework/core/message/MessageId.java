@@ -26,21 +26,27 @@ public enum MessageId implements MessageIdIf {
   F0008E,
   /** 対象のBean[{0}]が複数見つかりました。. */
   F0009E,
+  /** Conversationを開始しました。coonversationId={0}. */
+  F0010I,
+  /** Conversationを終了しました。coonversationId={0}. */
+  F0011I,
+  /** Conversation共有データを破棄します。[{0}]. */
+  F0012D,
   // C～ COMMON
   /** {0} start {1} {2}. */
-  C0001I,
+  C0001D,
   /** {0} normal-end {1} {2}. */
-  C0002I,
+  C0002D,
   /** {0} abnormal-end {1} {2}. */
   C0003E,
   // B～ BUSINESS LOGIC
   // P～ PRESENTATION
   // U～ 利用統計ログ
-  /** {0} start. */
+  /** {0} start {1}. */
   U0001I,
-  /** {0} normal-end. */
+  /** {0} normal-end {1}. */
   U0002I,
-  /** {0} abnormal-end. */
+  /** {0} abnormal-end {1}. */
   U0003E,
   ;
 

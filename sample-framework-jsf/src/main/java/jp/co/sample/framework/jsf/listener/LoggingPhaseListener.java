@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * ログ出力PhaseListener.
+ * 各Phaseの前後にデバッグログを出力します.
  */
 @Slf4j
 public class LoggingPhaseListener implements PhaseListener {

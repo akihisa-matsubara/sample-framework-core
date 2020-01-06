@@ -1,29 +1,22 @@
 package jp.co.sample.framework.core.interceptor;
 
-import jp.co.sample.framework.core.code.LoggerVo;
-import jp.co.sample.framework.core.message.MessageId;
-import jp.co.sample.framework.core.util.MessageUtils;
+import jp.co.sample.framework.core.util.UsageStatisticsLogger;
 import java.io.Serializable;
 import javax.annotation.Priority;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 利用統計 ロギングインターセプター.
  */
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(Interceptor.Priority.LIBRARY_BEFORE)
 @Interceptor
 @UsageStatistics
 public class UsageStatisticsLoggingInterceptor implements Serializable {
 
   /** serialVersionUID. */
   private static final long serialVersionUID = -7985776564208590378L;
-
-  /** 利用統計 Logger. */
-  private static final Logger STATISTICS_LOGGER = LoggerFactory.getLogger(LoggerVo.STATISTICS_LOGGER.getCode());
 
   /**
    * 利用統計ログを出力します.
@@ -37,20 +30,20 @@ public class UsageStatisticsLoggingInterceptor implements Serializable {
     UsageStatistics annotation = context.getMethod().getAnnotation(UsageStatistics.class);
 
     if (OutputTiming.BEGIN == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-      STATISTICS_LOGGER.info(MessageUtils.getMessage(MessageId.U0001I, annotation.processName()));
+      UsageStatisticsLogger.begin(annotation.processName(), annotation.param());
     }
 
     try {
       Object obj = context.proceed();
 
       if (OutputTiming.COMPLETE == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-        STATISTICS_LOGGER.info(MessageUtils.getMessage(MessageId.U0002I, annotation.processName()));
+        UsageStatisticsLogger.complete(annotation.processName(), annotation.param());
       }
       return obj;
 
     } catch (Exception e) {
       if (OutputTiming.COMPLETE == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-        STATISTICS_LOGGER.error(MessageUtils.getMessage(MessageId.U0003E, annotation.processName()));
+        UsageStatisticsLogger.error(annotation.processName(), annotation.param());
       }
       throw e;
 

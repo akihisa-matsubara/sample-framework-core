@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * デバッグ ロギングインターセプター.
  */
-@Priority(Interceptor.Priority.APPLICATION)
+@Priority(Interceptor.Priority.LIBRARY_BEFORE)
 @Interceptor
 @DebugLog
 @Slf4j
@@ -39,14 +39,14 @@ public class DebugLoggingInterceptor implements Serializable {
     }
 
     if (OutputTiming.BEGIN == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-      log.info(MessageUtils.getMessage(MessageId.C0001I, annotation.processName(), annotation.viewName(), dto.toString()));
+      log.debug(MessageUtils.getMessage(MessageId.C0001D, annotation.processName(), annotation.viewName(), dto.toString()));
     }
 
     try {
       Object obj = context.proceed();
 
       if (OutputTiming.COMPLETE == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-        log.info(MessageUtils.getMessage(MessageId.C0002I, annotation.processName(), annotation.viewName(), dto.toString()));
+        log.debug(MessageUtils.getMessage(MessageId.C0002D, annotation.processName(), annotation.viewName(), dto.toString()));
       }
       return obj;
 

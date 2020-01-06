@@ -9,36 +9,32 @@ import javax.enterprise.util.Nonbinding;
 import javax.interceptor.InterceptorBinding;
 
 /**
- * 利用統計ログ.
+ * Conversation実行.
  */
 @Inherited
 @InterceptorBinding
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
-public @interface UsageStatistics {
+public @interface InvokeConversation {
 
   /**
-   * ログ出力タイミング.
+   * 制御種別.
    *
-   * @return ログ出力タイミング
+   * @return 制御種別
    */
   @Nonbinding
-  OutputTiming outputTiming() default OutputTiming.BOTH;
+  Type type() default Type.DO_NOTHING;
 
   /**
-   * 処理名.
-   *
-   * @return 処理名
+   * 制御種別.
    */
-  @Nonbinding
-  String processName() default "";
-
-  /**
-   * パラメーター.
-   *
-   * @return パラメーター
-   */
-  @Nonbinding
-  String param() default "";
-
+  public enum Type {
+    /** 処理なし. */
+    DO_NOTHING,
+    /** 処理前にConversationを開始. */
+    START,
+    /** 処理後にConversationを終了. */
+    END,
+    ;
+  }
 }
