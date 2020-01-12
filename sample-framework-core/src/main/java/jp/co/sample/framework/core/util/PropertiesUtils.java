@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.util;
 
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
@@ -25,12 +25,12 @@ public class PropertiesUtils {
 
       Properties property = new Properties();
       property.load(Objects.requireNonNull(is));
-      log.info(MessageUtils.getMessage(MessageId.F0002I, resName));
+      log.info(MessageUtils.getMessage(CoreMessageId.F0002I, resName));
 
       return property;
 
     } catch (Exception e) {
-      log.warn(MessageUtils.getMessage(MessageId.F0003W, resName));
+      log.warn(MessageUtils.getMessage(CoreMessageId.F0003W, resName));
       return null;
 
     }

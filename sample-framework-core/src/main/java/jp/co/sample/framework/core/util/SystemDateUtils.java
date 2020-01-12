@@ -3,7 +3,7 @@ package jp.co.sample.framework.core.util;
 import jp.co.sample.common.code.DateFormat.DateFormatVo;
 import jp.co.sample.common.util.LocalDateFormatUtils;
 import jp.co.sample.framework.core.data.dao.SystemDateDao;
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -75,7 +75,7 @@ public class SystemDateUtils {
       String deemedDate = property.getProperty(KEY_VALUE);
       if (StringUtils.isNotEmpty(deemedDate)) {
         propertyDateOpt = Optional.of(LocalDateFormatUtils.parse(deemedDate, DateFormatVo.YYYYMMDD_NO_DELIMITER));
-        log.info(MessageUtils.getMessage(MessageId.F0005I, deemedDate));
+        log.info(MessageUtils.getMessage(CoreMessageId.F0005I, deemedDate));
       }
 
     } else {

@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.interceptor;
 
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.CdiUtils;
 import jp.co.sample.framework.core.util.MessageUtils;
 import java.io.Serializable;
@@ -56,7 +56,7 @@ public class InvokeConversationInterceptor implements Serializable {
     Conversation conv = CdiUtils.getBean(Conversation.class);
     if (conv.isTransient()) {
       conv.begin();
-      log.info(MessageUtils.getMessage(MessageId.F0010I), conv.getId());
+      log.info(MessageUtils.getMessage(CoreMessageId.F0010I), conv.getId());
     }
   }
 
@@ -67,7 +67,7 @@ public class InvokeConversationInterceptor implements Serializable {
     Conversation conv = CdiUtils.getBean(Conversation.class);
     if (!conv.isTransient()) {
       conv.end();
-      log.info(MessageUtils.getMessage(MessageId.F0011I), conv.getId());
+      log.info(MessageUtils.getMessage(CoreMessageId.F0011I), conv.getId());
     }
   }
 

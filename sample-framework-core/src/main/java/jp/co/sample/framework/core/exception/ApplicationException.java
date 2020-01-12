@@ -41,4 +41,5 @@ public class ApplicationException extends RuntimeException {
     super(cause);
     this.errorList = errorList;
   }
+
 }

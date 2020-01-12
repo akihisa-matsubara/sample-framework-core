@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.conversation;
 
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.MessageUtils;
 import java.io.Serializable;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class ConversationSharedDto implements Serializable {
    */
   @PreDestroy
   public void destroy() {
-    log.debug(MessageUtils.getMessage(MessageId.F0012D, entityMap.toString()));
+    log.debug(MessageUtils.getMessage(CoreMessageId.F0012D, entityMap.toString()));
   }
 
   /**

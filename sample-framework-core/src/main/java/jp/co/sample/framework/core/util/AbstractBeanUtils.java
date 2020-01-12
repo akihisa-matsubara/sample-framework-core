@@ -2,7 +2,7 @@ package jp.co.sample.framework.core.util;
 
 import jp.co.sample.framework.core.exception.ApplicationException;
 import jp.co.sample.framework.core.exception.dto.ErrorMessage;
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -52,7 +52,7 @@ public abstract class AbstractBeanUtils {
       return dest;
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
         | SecurityException e) {
-      throw new ApplicationException(e, new ErrorMessage(MessageId.F0001E, type.getSimpleName(), orig.getClass().getSimpleName()));
+      throw new ApplicationException(e, new ErrorMessage(CoreMessageId.F0001E, type.getSimpleName(), orig.getClass().getSimpleName()));
     }
   }
 
@@ -66,7 +66,7 @@ public abstract class AbstractBeanUtils {
     try {
       BeanUtils.copyProperties(dest, orig);
     } catch (IllegalAccessException | InvocationTargetException e) {
-      throw new ApplicationException(e, new ErrorMessage(MessageId.F0001E, dest.getClass().getSimpleName(), orig.getClass().getSimpleName()));
+      throw new ApplicationException(e, new ErrorMessage(CoreMessageId.F0001E, dest.getClass().getSimpleName(), orig.getClass().getSimpleName()));
     }
   }
 

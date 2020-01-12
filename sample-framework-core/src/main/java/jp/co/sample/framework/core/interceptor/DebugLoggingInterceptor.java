@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.interceptor;
 
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.CdiUtils;
 import jp.co.sample.framework.core.util.MessageUtils;
 import java.io.Serializable;
@@ -39,20 +39,20 @@ public class DebugLoggingInterceptor implements Serializable {
     }
 
     if (OutputTiming.BEGIN == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-      log.debug(MessageUtils.getMessage(MessageId.C0001D, annotation.processName(), annotation.viewName(), dto.toString()));
+      log.debug(MessageUtils.getMessage(CoreMessageId.F0013D, annotation.processName(), annotation.viewName(), dto.toString()));
     }
 
     try {
       Object obj = context.proceed();
 
       if (OutputTiming.COMPLETE == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-        log.debug(MessageUtils.getMessage(MessageId.C0002D, annotation.processName(), annotation.viewName(), dto.toString()));
+        log.debug(MessageUtils.getMessage(CoreMessageId.F0014D, annotation.processName(), annotation.viewName(), dto.toString()));
       }
       return obj;
 
     } catch (Exception e) {
       if (OutputTiming.COMPLETE == annotation.outputTiming() || OutputTiming.BOTH == annotation.outputTiming()) {
-        log.error(MessageUtils.getMessage(MessageId.C0003E, annotation.processName(), annotation.viewName(), dto.toString()));
+        log.error(MessageUtils.getMessage(CoreMessageId.F0015E, annotation.processName(), annotation.viewName(), dto.toString()));
       }
       throw e;
 

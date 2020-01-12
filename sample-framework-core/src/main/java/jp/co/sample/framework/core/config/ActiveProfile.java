@@ -1,7 +1,7 @@
 package jp.co.sample.framework.core.config;
 
 import jp.co.sample.common.constant.Profile;
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.MessageUtils;
 import jp.co.sample.framework.core.util.PropertiesUtils;
 import javax.annotation.PostConstruct;
@@ -35,7 +35,7 @@ public class ActiveProfile {
   @PostConstruct
   public void initialize() {
     profile = PropertiesUtils.get(COMMON_CONFIG_FILE_NAME).getProperty(KEY_ACTIVE_PROFILE);
-    log.info(MessageUtils.getMessage(MessageId.F0004I, profile));
+    log.info(MessageUtils.getMessage(CoreMessageId.F0004I, profile));
     restrict();
 
   }

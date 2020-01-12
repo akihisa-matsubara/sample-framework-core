@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.config;
 
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.MessageUtils;
 import jp.co.sample.framework.core.util.PropertiesUtils;
 import java.util.Properties;
@@ -103,7 +103,7 @@ public class ConfigProducer {
     }
 
     if (value == null) {
-      throw new IllegalArgumentException(MessageUtils.getMessage(MessageId.F0007E, key));
+      throw new IllegalArgumentException(MessageUtils.getMessage(CoreMessageId.F0007E, key));
     }
 
     return value;

@@ -1,7 +1,7 @@
 package jp.co.sample.framework.core.util;
 
 import jp.co.sample.framework.core.code.LoggerVo;
-import jp.co.sample.framework.core.message.MessageId;
+import jp.co.sample.framework.core.message.CoreMessageId;
 import lombok.experimental.UtilityClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class UsageStatisticsLogger {
    * @param params 埋込文字列
    */
   public static void begin(String... params) {
-    STATISTICS_LOGGER.info(MessageUtils.getMessage(MessageId.U0001I, params));
+    STATISTICS_LOGGER.info(MessageUtils.getMessage(CoreMessageId.U0001I, params));
   }
 
   /**
@@ -30,7 +30,7 @@ public class UsageStatisticsLogger {
    * @param params 埋込文字列
    */
   public static void complete(String... params) {
-    STATISTICS_LOGGER.info(MessageUtils.getMessage(MessageId.U0002I, params));
+    STATISTICS_LOGGER.info(MessageUtils.getMessage(CoreMessageId.U0002I, params));
   }
 
   /**
@@ -39,7 +39,7 @@ public class UsageStatisticsLogger {
    * @param params 埋込文字列
    */
   public static void error(String... params) {
-    STATISTICS_LOGGER.error(MessageUtils.getMessage(MessageId.U0003E, params));
+    STATISTICS_LOGGER.error(MessageUtils.getMessage(CoreMessageId.U0003E, params));
   }
 
 }
