@@ -36,8 +36,10 @@ public enum CoreMessageId implements MessageId {
   F0014D,
   /** {0} abnormal-end {1} {2}. */
   F0015E,
-  /** 指定のルール[{0}]は未定義です。. */
+  /** 指定の制御仕様番号[{0}]は未定義です。. */
   F0016E,
+  /** 指定の制御[{0}]は未定義です。. */
+  F0017E,
   // U～ 利用統計ログ
   /** {0} start {1}. */
   U0001I,
