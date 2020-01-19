@@ -3,6 +3,7 @@ package jp.co.sample.framework.jsf.rule;
 import jp.co.sample.framework.core.util.CdiUtils;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -15,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * 表示制御.
- * 設定ファイルと制御仕様に従い表示制御を実施し、制御状態を管理する.
+ * 設定ファイルと制御仕様に従い表示制御を実施し、制御状態を管理します.
  */
 @ViewScoped
 @Named
@@ -25,6 +26,10 @@ public class DisplayController implements Serializable {
   private static final long serialVersionUID = -8315191336035099075L;
   /** 設定ファイル名. */
   private static final String RULE_CONFIG_NAME = "displayRule";
+  /** キー情報：制御仕様番号（親）. */
+  private static final String KEY_CTR_SPEC_PR_NOS = ".controlSpecParentNos";
+  /** キー情報：制御仕様. */
+  private static final String KEY_CTR_ITEMS = ".controlItems";
 
   /** ルール・条件クラス. */
   private Class<? extends RuleConditions> ruleClass;
@@ -74,14 +79,14 @@ public class DisplayController implements Serializable {
    * @param eventName イベント名
    */
   public void doControl(String eventName) {
-    Map<String, ControlSpecifications> specMap = new ConcurrentHashMap<>();
-    Set<String> specParentNoSet = build(eventName, specMap);
-    log.debug("The control specification to execute is " + specParentNoSet);
+    Map<String, ControlSpecifications> specMap = load(eventName);
+    List<String> specParentNoList = ConfigFactory.load(RULE_CONFIG_NAME).getStringList(eventName + KEY_CTR_SPEC_PR_NOS);
+    log.debug("The control specification to execute is " + specParentNoList);
 
     RuleConditions rule = CdiUtils.getBean(ruleClass);
     Set<String> matchedSpecNoSet = new HashSet<>();
     String matchedSpecNo = null;
-    for (String specParentNo : specParentNoSet) {
+    for (String specParentNo : specParentNoList) {
       matchedSpecNo = doExecute(rule, specParentNo);
       if (matchedSpecNo != null) {
         matchedSpecNoSet.add(matchedSpecNo);
@@ -94,27 +99,20 @@ public class DisplayController implements Serializable {
   }
 
   /**
-   * 設定ファイルの制御仕様を元に制御仕様Mapを更新し、実行すべき制御仕様番号（親）のセット返します.
+   * 設定ファイルの制御仕様を元に制御仕様Mapを返します.
    *
    * @param eventName イベント名
-   * @param specMap 制御仕様Map
-   * @return specParentNoSet 制御仕様番号（親）のセット
+   * @return 制御仕様Map
    */
-  private Set<String> build(final String eventName, Map<String, ControlSpecifications> specMap) {
-    Set<String> specParentNoSet = new HashSet<>();
-    for (String controlItem : ConfigFactory.load(RULE_CONFIG_NAME).getStringList(eventName + ".controlItems")) {
-      ControlSpecifications ruleContents =
-          ConfigBeanFactory.create(ConfigFactory.load(RULE_CONFIG_NAME).getConfig(eventName + "." + controlItem), ControlSpecifications.class);
+  private Map<String, ControlSpecifications> load(final String eventName) {
+    Map<String, ControlSpecifications> specMap = new ConcurrentHashMap<>();
+    for (String controlItem : ConfigFactory.load(RULE_CONFIG_NAME).getStringList(eventName + KEY_CTR_ITEMS)) {
+      ControlSpecifications ruleContents = ConfigBeanFactory.create(ConfigFactory.load(RULE_CONFIG_NAME).getConfig(controlItem), ControlSpecifications.class);
       specMap.put(controlItem, ruleContents);
-
-      for (String controlSpecNo : ruleContents.getControlSpecNos()) {
-        specParentNoSet.add(controlSpecNo.split("-")[0]);
-      }
     }
 
-    return specParentNoSet;
+    return specMap;
   }
-
 
   /**
    * 制御仕様を実行し、条件に該当した制御仕様番号を返します.
@@ -173,6 +171,7 @@ public class DisplayController implements Serializable {
    * @param matchedSpecNoSet 条件に該当した制御仕様番号セット
    */
   private void organizeControlContents(RuleConditions rule, Map<String, ControlSpecifications> specMap, Set<String> matchedSpecNoSet) {
+
     for (Entry<String, ControlSpecifications> specEntry : specMap.entrySet()) {
       for (int i = 0; i < specEntry.getValue().getControlSpecNos().size(); i++) {
         ControlSpecifications specs = specEntry.getValue();
@@ -180,6 +179,7 @@ public class DisplayController implements Serializable {
           ControlContent controlContent = ControlContent.decode(specs.getControlContents().get(i));
           if (ControlContent.SET == controlContent) {
             controlContent = rule.updateValue(specEntry.getKey(), specs.getControlSpecNos().get(i));
+            log.debug("Executed the SET specification " + specs.getControlSpecNos().get(i));
           }
           controlContents.put(specEntry.getKey(), controlContent);
           break;
