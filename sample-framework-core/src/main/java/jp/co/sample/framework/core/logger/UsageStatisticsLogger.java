@@ -1,7 +1,8 @@
-package jp.co.sample.framework.core.util;
+package jp.co.sample.framework.core.logger;
 
 import jp.co.sample.framework.core.code.LoggerVo;
 import jp.co.sample.framework.core.message.CoreMessageId;
+import jp.co.sample.framework.core.util.MessageUtils;
 import lombok.experimental.UtilityClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

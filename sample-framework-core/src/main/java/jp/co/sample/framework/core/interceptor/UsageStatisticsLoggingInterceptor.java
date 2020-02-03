@@ -1,6 +1,6 @@
 package jp.co.sample.framework.core.interceptor;
 
-import jp.co.sample.framework.core.util.UsageStatisticsLogger;
+import jp.co.sample.framework.core.logger.UsageStatisticsLogger;
 import java.io.Serializable;
 import javax.annotation.Priority;
 import javax.interceptor.AroundInvoke;
