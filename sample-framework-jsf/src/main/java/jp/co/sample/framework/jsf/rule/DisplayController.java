@@ -79,7 +79,6 @@ public class DisplayController implements Serializable {
    * @param eventName イベント名
    */
   public void doControl(String eventName) {
-    Map<String, ControlSpecifications> specMap = load(eventName);
     List<String> specParentNoList = ConfigFactory.load(RULE_CONFIG_NAME).getStringList(eventName + KEY_CTR_SPEC_PR_NOS);
     log.debug("The control specification to execute is " + specParentNoList);
 
@@ -94,6 +93,7 @@ public class DisplayController implements Serializable {
     }
     log.debug("Matched control specification is " + matchedSpecNoSet);
 
+    Map<String, ControlSpecifications> specMap = load(eventName);
     organizeControlContents(rule, specMap, matchedSpecNoSet);
     log.debug("Control contents is " + controlContents);
   }

@@ -57,7 +57,7 @@ public class BeanUtilsExt {
    * @return コピーしたBeanインスタンス
    */
   public static <T extends Serializable> T deepCopy(final T orig) {
-      return SerializationUtils.clone(orig);
+    return SerializationUtils.clone(orig);
   }
 
 }

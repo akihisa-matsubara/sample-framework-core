@@ -15,14 +15,20 @@ public class UndefinedRuleException extends ApplicationException {
   private static final long serialVersionUID = -3783009899660935057L;
 
   /**
-   * {@inheritDoc}
+   * デフォルトコンストラクター.
+   *
+   * @param cause Throwable
+   * @param error エラーメッセージ
    */
   public UndefinedRuleException(Throwable cause, ErrorMessage error) {
     super(cause, error);
   }
 
   /**
-   * {@inheritDoc}
+   * デフォルトコンストラクター.
+   *
+   * @param cause Throwable
+   * @param errorList エラーメッセージリスト
    */
   public UndefinedRuleException(Throwable cause, List<ErrorMessage> errorList) {
     super(cause, errorList);

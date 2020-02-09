@@ -11,6 +11,11 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <!-- override -->
+        <project.report.config.path>${project.basedir}/../../eclipse-settings</project.report.config.path>
+    </properties>
+
     <build>
         <finalName>sample-framework-core</finalName>
         <plugins>

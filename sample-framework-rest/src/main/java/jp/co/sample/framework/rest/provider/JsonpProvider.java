@@ -1,6 +1,6 @@
 package jp.co.sample.framework.rest.provider;
 
-import jp.co.sample.common.code.DateFormat.DateFormatVo;
+import jp.co.sample.common.util.DateFormat.DateFormatVo;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

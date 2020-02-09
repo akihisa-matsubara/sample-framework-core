@@ -22,7 +22,7 @@ public class SearchConditionDo {
   @Builder.Default
   private List<SortDo> sortList = new ArrayList<>();
 
-  /** クエリパラメータMap. */
+  /** クエリパラメーターMap. */
   @Builder.Default
   private Map<String, Object> queryParams = new LinkedHashMap<>();
 
