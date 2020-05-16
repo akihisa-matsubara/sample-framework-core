@@ -23,6 +23,9 @@ public class InvokeConversationInterceptor implements Serializable {
   /** serialVersionUID. */
   private static final long serialVersionUID = -5859736536223450434L;
 
+  /** Conversation タイムアウト(30m). */
+  private static final long CONVERSATION_TIMEOUT_MILLISEC = 30 * 60 * 1000L;
+
   /**
    * Conversationの開始／終了を実行します.
    *
@@ -44,7 +47,6 @@ public class InvokeConversationInterceptor implements Serializable {
     } finally {
       if (InvokeConversation.Type.END == annotation.type()) {
         endConversation();
-
       }
     }
   }
@@ -56,6 +58,8 @@ public class InvokeConversationInterceptor implements Serializable {
     Conversation conv = CdiUtils.getBean(Conversation.class);
     if (conv.isTransient()) {
       conv.begin();
+      // timeout default 10m -> 30m
+      conv.setTimeout(CONVERSATION_TIMEOUT_MILLISEC);
       log.info(MessageUtils.getMessage(CoreMessageId.F0010I), conv.getId());
     }
   }

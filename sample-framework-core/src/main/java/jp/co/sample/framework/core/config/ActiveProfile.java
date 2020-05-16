@@ -3,60 +3,46 @@ package jp.co.sample.framework.core.config;
 import jp.co.sample.common.constant.Profile;
 import jp.co.sample.framework.core.message.CoreMessageId;
 import jp.co.sample.framework.core.util.MessageUtils;
-import jp.co.sample.framework.core.util.PropertiesUtils;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import lombok.Getter;
+import javax.faces.application.ProjectStage;
+import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 有効なプロファイル.
  */
-@ApplicationScoped
-@Getter
+@UtilityClass
 @Slf4j
 public class ActiveProfile {
 
-  /** Key値:activeProfile. */
-  private static final String KEY_ACTIVE_PROFILE = "activeProfile";
+  /** Key値:active.profile. */
+  private static final String KEY_ACTIVE_PROFILE = "active.profile";
 
-  /** プロファイル共通設定ファイル名. */
-  private static final String COMMON_CONFIG_FILE_NAME = "/application.properties";
+  /** active profile (初期値はut).  */
+  public static final String PROFILE;
 
-  /** active prifile. */
-  private String profile;
-
-  /** 本番環境制限. */
-  private boolean restriction;
-
-  /**
-   * 初期化.
-   */
-  @PostConstruct
-  public void initialize() {
-    profile = PropertiesUtils.get(COMMON_CONFIG_FILE_NAME).getProperty(KEY_ACTIVE_PROFILE);
-    log.info(MessageUtils.getMessage(CoreMessageId.F0004I, profile));
-    restrict();
-
+  static {
+    String activeProfile = System.getProperty(KEY_ACTIVE_PROFILE);
+    PROFILE = StringUtils.isEmpty(activeProfile) ? Profile.UT : activeProfile;
+    log.info(MessageUtils.getMessage(CoreMessageId.F0004I, PROFILE));
   }
 
   /**
-   * 本番環境制限を初期化します.
+   * Project Stageを取得します.
+   *
+   * @return Project Stage
    */
-  private void restrict() {
-    if (profile == null) {
-      restriction = true;
-      return;
-    }
-    switch (profile) {
-      case Profile.IT:
-      case Profile.UT:
+  public static ProjectStage toProjectStage() {
+    switch (PROFILE) {
       case Profile.DEV:
-        restriction = false;
-        break;
+      case Profile.UT:
+      case Profile.UIT:
+      case Profile.IT:
+        return ProjectStage.Development;
+
       default:
-        restriction = true;
-        break;
+        return ProjectStage.Production;
+
     }
   }
 

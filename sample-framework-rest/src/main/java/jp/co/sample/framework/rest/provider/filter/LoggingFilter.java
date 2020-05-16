@@ -105,7 +105,7 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
    */
   private void logRequest(ContainerRequestContext context) {
     StringBuilder builder = new StringBuilder();
-    builder.append("%n----- HTTP REQUEST ---------------------%n");
+    builder.append("\n----- HTTP REQUEST ---------------------\n");
     builder.append(String.format(DUMP_TEMPLATE, "Request URL", context.getUriInfo().getAbsolutePath()));
     builder.append(String.format(DUMP_TEMPLATE, "Request Method", context.getMethod()));
     builder.append(String.format(DUMP_TEMPLATE, "Resource Method",
@@ -113,13 +113,13 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
     builder.append(String.format(DUMP_TEMPLATE, "Class",
         resourceInfo.getResourceClass() == null ? "-" : resourceInfo.getResourceClass().getCanonicalName()));
 
-    builder.append("----- PATH PARAMETER -------------------%n");
+    builder.append("----- PATH PARAMETER -------------------\n");
     builder.append(dumpParameters(context.getUriInfo().getPathParameters()));
 
-    builder.append("----- QUERY PARAMETER ------------------%n");
+    builder.append("----- QUERY PARAMETER ------------------\n");
     builder.append(dumpParameters(context.getUriInfo().getQueryParameters()));
 
-    builder.append("----- HTTP REQUEST HEADER --------------%n");
+    builder.append("----- HTTP REQUEST HEADER --------------\n");
     for (String headerName : context.getHeaders().keySet()) {
       builder.append(String.format(DUMP_TEMPLATE, headerName, context.getHeaderString(headerName)));
     }
@@ -131,11 +131,12 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
    * リクエストボディーをログ出力します.
    *
    * @param context ContainerRequestContext
+   * @throws IOException IO例外
    */
   private void logRequestBody(ContainerRequestContext context) throws IOException {
     StringBuilder builder = new StringBuilder();
 
-    builder.append("%n----- HTTP REQUEST BODY ----------------%n");
+    builder.append("\n----- HTTP REQUEST BODY ----------------\n");
     try (Scanner sc = new Scanner(context.getEntityStream(), Encoding.UTF8)) {
       sc.useDelimiter("\\A");
       if (sc.hasNext()) {
@@ -155,10 +156,10 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
    */
   private void logResponse(ContainerResponseContext context) {
     StringBuilder builder = new StringBuilder();
-    builder.append("%n----- HTTP RESPONSE --------------------%n");
+    builder.append("\n----- HTTP RESPONSE --------------------\n");
     builder.append(String.format(DUMP_TEMPLATE, "Status", context.getStatus()));
 
-    builder.append("----- HTTP RESPONSE HEADER -------------%n");
+    builder.append("----- HTTP RESPONSE HEADER -------------\n");
     for (String headerName : context.getHeaders().keySet()) {
       builder.append(String.format(DUMP_TEMPLATE, headerName, context.getHeaderString(headerName)));
     }
@@ -183,7 +184,7 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
     try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
       context.setOutputStream(byteArrayOutputStream);
       context.proceed();
-      builder.append("%n----- HTTP RESPONSE BODY ---------------%n");
+      builder.append("\n----- HTTP RESPONSE BODY ---------------\n");
       builder.append(byteArrayOutputStream.toString(Encoding.UTF8));
       byteArrayOutputStream.writeTo(originalStream);
 

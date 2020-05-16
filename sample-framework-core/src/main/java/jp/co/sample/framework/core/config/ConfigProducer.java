@@ -9,7 +9,6 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
-import javax.inject.Inject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -31,10 +30,6 @@ public class ConfigProducer {
   /** 設定値が存在しない場合のint型デフォルト値. */
   private static final int UNDEFINED = -1;
 
-  /** 有効なプロファイル. */
-  @Inject
-  private ActiveProfile profile;
-
   /** プロファイル共通設定ファイル. */
   private Properties commonConfiguration;
 
@@ -47,9 +42,7 @@ public class ConfigProducer {
   @PostConstruct
   public void initialize() {
     commonConfiguration = PropertiesUtils.get(DEFAULT_FILE_NAME);
-    if (StringUtils.isNotEmpty(profile.getProfile())) {
-      profileConfiguration = PropertiesUtils.get(PROFILE_FILE_NAME.replaceAll(REPLACE_PROFILE_STR, profile.getProfile()));
-    }
+    profileConfiguration = PropertiesUtils.get(PROFILE_FILE_NAME.replaceAll(REPLACE_PROFILE_STR, ActiveProfile.PROFILE));
   }
 
   /**
