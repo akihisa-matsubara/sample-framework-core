@@ -23,7 +23,7 @@ public class LoggingPhaseListener implements PhaseListener {
    */
   @Override
   public void beforePhase(PhaseEvent event) {
-    log.debug("<-------- " + StringUtils.rightPad(event.getPhaseId().toString(), 25)  + " - Before Phase -------->");
+    log.debug("<-------- {} - Before Phase -------->", StringUtils.rightPad(event.getPhaseId().toString(), 25));
   }
 
   /**
@@ -33,7 +33,7 @@ public class LoggingPhaseListener implements PhaseListener {
    */
   @Override
   public void afterPhase(PhaseEvent event) {
-    log.debug("<-------- " + StringUtils.rightPad(event.getPhaseId().toString(), 25)  + " - After Phase  -------->");
+    log.debug("<-------- {} - After Phase  -------->", StringUtils.rightPad(event.getPhaseId().toString(), 25));
   }
 
   /**

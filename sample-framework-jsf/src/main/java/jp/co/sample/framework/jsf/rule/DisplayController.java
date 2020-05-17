@@ -80,7 +80,7 @@ public class DisplayController implements Serializable {
    */
   public void doControl(String eventName) {
     List<String> specParentNoList = ConfigFactory.load(RULE_CONFIG_NAME).getStringList(eventName + KEY_CTR_SPEC_PR_NOS);
-    log.debug("The control specification to execute is " + specParentNoList);
+    log.debug("The control specification to execute is {}", specParentNoList);
 
     RuleConditions rule = CdiUtils.getBean(ruleClass);
     Set<String> matchedSpecNoSet = new HashSet<>();
@@ -91,11 +91,11 @@ public class DisplayController implements Serializable {
         matchedSpecNoSet.add(matchedSpecNo);
       }
     }
-    log.debug("Matched control specification is " + matchedSpecNoSet);
+    log.debug("Matched control specification is {}", matchedSpecNoSet);
 
     Map<String, ControlSpecifications> specMap = load(eventName);
     organizeControlContents(rule, specMap, matchedSpecNoSet);
-    log.debug("Control contents is " + controlContents);
+    log.debug("Control contents is {}", controlContents);
   }
 
   /**
@@ -179,7 +179,7 @@ public class DisplayController implements Serializable {
           ControlContent controlContent = ControlContent.decode(specs.getControlContents().get(i));
           if (ControlContent.SET == controlContent) {
             controlContent = rule.updateValue(specEntry.getKey(), specs.getControlSpecNos().get(i));
-            log.debug("Executed the SET specification " + specs.getControlSpecNos().get(i));
+            log.debug("Executed the SET specification {}", specs.getControlSpecNos().get(i));
           }
           controlContents.put(specEntry.getKey(), controlContent);
           break;

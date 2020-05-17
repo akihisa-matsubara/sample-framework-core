@@ -62,7 +62,7 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
       ExceptionQueuedEventContext ec = (ExceptionQueuedEventContext) it.next().getSource();
       Throwable th = ec.getException();
       ERROR_LOGGER.error(ExceptionUtils.getStackTrace(th));
-      log.error(th.getClass().getSimpleName() + ":" + th.getMessage());
+      log.error("{}:{}", th.getClass().getSimpleName(), th.getMessage());
 
       if (th instanceof ProtectedViewException) {
         try {
