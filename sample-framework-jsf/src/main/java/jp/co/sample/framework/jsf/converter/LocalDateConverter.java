@@ -1,11 +1,16 @@
 package jp.co.sample.framework.jsf.converter;
 
-import jp.co.sample.common.util.LocalDateFormatUtils;
 import jp.co.sample.common.util.DateFormat.DateFormatVo;
+import jp.co.sample.common.util.LocalDateFormatUtils;
+import jp.co.sample.framework.core.message.CoreMessageId;
+import jp.co.sample.framework.core.util.MessageUtils;
+import jp.co.sample.framework.jsf.constant.ComponentAttribute;
 import java.time.LocalDate;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
 /**
@@ -21,10 +26,18 @@ public class LocalDateConverter implements Converter {
    * @param component {@link UIComponent}
    * @param value 値
    * @return LocalDateのインスタンス
+   * @throws ConverterException 変換に失敗した場合
    */
   @Override
   public Object getAsObject(FacesContext context, UIComponent component, String value) {
-    return LocalDateFormatUtils.parse(value, DateFormatVo.YYYYMMDD);
+    LocalDate obj = null;
+    try {
+      obj = LocalDateFormatUtils.parse(value, DateFormatVo.YYYYMMDD);
+    } catch (Exception e) {
+      String label = (String)component.getAttributes().get(ComponentAttribute.LABEL);
+      throw new ConverterException(new FacesMessage(MessageUtils.getMessage(CoreMessageId.F1004E, label)), e);
+    }
+    return obj;
   }
 
   /**
@@ -34,10 +47,17 @@ public class LocalDateConverter implements Converter {
    * @param component {@link UIComponent}
    * @param value {@link LocalDate}
    * @return 変換した文字列
+   * @throws ConverterException 変換に失敗した場合
    */
   @Override
   public String getAsString(FacesContext context, UIComponent component, Object value) {
-    return LocalDateFormatUtils.format((LocalDate) value, DateFormatVo.YYYYMMDD);
+    String str = null;
+    try {
+      str = LocalDateFormatUtils.format((LocalDate) value, DateFormatVo.YYYYMMDD);
+    } catch (Exception e) {
+      throw new ConverterException(new FacesMessage(MessageUtils.getMessage(CoreMessageId.F1003E)), e);
+    }
+    return str;
   }
 
 }

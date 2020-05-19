@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class ActiveProfile {
 
-  /** Key値:active.profile. */
+  /** キー情報：有効なプロファイル. */
   private static final String KEY_ACTIVE_PROFILE = "active.profile";
 
   /** active profile (初期値はut).  */

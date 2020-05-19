@@ -36,7 +36,7 @@ public enum ControlContent {
       case "SET":
         return SET;
       default:
-        throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0017E, value));
+        throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1002E, value));
     }
   }
 }

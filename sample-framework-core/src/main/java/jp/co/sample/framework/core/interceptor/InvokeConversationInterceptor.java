@@ -58,7 +58,7 @@ public class InvokeConversationInterceptor implements Serializable {
     Conversation conv = CdiUtils.getBean(Conversation.class);
     if (conv.isTransient()) {
       conv.begin();
-      // timeout default 10m -> 30m
+      // timeout default 10m -> 30m (> session timeout)
       conv.setTimeout(CONVERSATION_TIMEOUT_MILLISEC);
       log.info(MessageUtils.getMessage(CoreMessageId.F0010I), conv.getId());
     }

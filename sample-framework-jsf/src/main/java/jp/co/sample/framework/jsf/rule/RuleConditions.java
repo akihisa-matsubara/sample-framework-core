@@ -15,7 +15,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo001() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.001"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.001"));
   }
 
   /**
@@ -24,7 +24,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo002() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.002"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.002"));
   }
 
   /**
@@ -33,7 +33,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo003() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.003"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.003"));
   }
 
   /**
@@ -42,7 +42,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo004() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.004"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.004"));
   }
 
   /**
@@ -51,7 +51,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo005() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.005"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.005"));
   }
 
   /**
@@ -60,7 +60,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo006() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.006"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.006"));
   }
 
   /**
@@ -69,7 +69,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo007() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.007"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.007"));
   }
 
   /**
@@ -78,7 +78,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo008() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.008"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.008"));
   }
 
   /**
@@ -87,7 +87,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo009() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.009"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.009"));
   }
 
   /**
@@ -96,7 +96,7 @@ public interface RuleConditions {
    * @return 制御仕様番号
    */
   default String matchesNo010() {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, "No.010"));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, "No.010"));
   }
 
   /**
@@ -107,7 +107,7 @@ public interface RuleConditions {
    * @return 制御内容
    */
   default ControlContent updateValue(String itemId, String controlSpecNo) {
-    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F0016E, controlSpecNo));
+    throw new UndefinedRuleException(null, new ErrorMessage(CoreMessageId.F1001E, controlSpecNo));
   }
 
 }
