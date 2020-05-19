@@ -1,6 +1,5 @@
 package jp.co.sample.framework.core.config;
 
-import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
@@ -24,7 +23,7 @@ public class ConfigProducer {
   @Config
   @Dependent
   public int getAsInteger(InjectionPoint ip) {
-    return ConfigUtils.getAsInteger(getKey(ip));
+    return ConfigUtils.getAsInt(getKey(ip));
   }
 
   /**
@@ -39,20 +38,6 @@ public class ConfigProducer {
   @Dependent
   public String getAsString(InjectionPoint ip) {
     return ConfigUtils.getAsString(getKey(ip));
-  }
-
-  /**
-   * 指定されたキーに対応した設定値を取得します.
-   * value属性に値が指定されていない場合、フィールド名をキーに設定します.
-   *
-   * @param ip インジェクションポイント
-   * @return 設定値、設定値が存在しない場合はnull
-   */
-  @Produces
-  @Config
-  @Dependent
-  public List<String> getAsList(InjectionPoint ip) {
-    return ConfigUtils.getAsList(getKey(ip));
   }
 
   /**

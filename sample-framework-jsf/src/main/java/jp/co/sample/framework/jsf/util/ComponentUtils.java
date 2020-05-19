@@ -13,7 +13,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class ComponentUtils {
 
-  // XXX 現状利用無し
+  // NOTE: 現状利用無し
 
   /**
    * コンポーネント(SelectItem)のリストを返します.

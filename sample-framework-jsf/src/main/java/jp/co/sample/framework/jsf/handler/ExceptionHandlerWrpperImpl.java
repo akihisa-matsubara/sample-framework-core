@@ -51,7 +51,7 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
    * </P>
    * <ul>
    * <li>発生した例外をエラーログに出力します.</li>
-   * <li>ProtectedViewExceptionの場合、不正操作用画面へ遷移します.</li>
+   * <li>ProtectedViewExceptionの場合、不正操作画面へ遷移します.</li>
    * </ul>
    */
   @Override
@@ -64,6 +64,7 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
       ERROR_LOGGER.error(ExceptionUtils.getStackTrace(th));
       log.error("{}:{}", th.getClass().getSimpleName(), th.getMessage());
 
+      // TODO システム例外ページ
       if (th instanceof ProtectedViewException) {
         try {
           NavigationHandler navHandler = fc.getApplication().getNavigationHandler();

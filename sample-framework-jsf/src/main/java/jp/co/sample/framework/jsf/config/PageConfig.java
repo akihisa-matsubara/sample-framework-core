@@ -9,9 +9,9 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class PageConfig {
   /** キー情報：セッションタイムアウトページ. */
-  private static final String KEY_SESSION_TIMEOUT_PAGE = "sessionTimeoutPage";
+  private static final String KEY_SESSION_TIMEOUT_PAGE = "framework.error-page.session-timeout";
   /** キー情報：不正操作ページ. */
-  private static final String KEY_ILLEGAL_OPERATION_PAGE = "illegalOperationPage";
+  private static final String KEY_ILLEGAL_OPERATION_PAGE = "framework.error-page.illegal-operation";
 
   /**
    * セッションタイムアウトページを取得します.

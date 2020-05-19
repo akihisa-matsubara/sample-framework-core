@@ -51,7 +51,7 @@ public class LoggingFilter implements ContainerRequestFilter, ContainerResponseF
 
   /**
    * リクエスト受付時にアクセス履歴とリクエストに関する情報をログ出力します.
-   * XXX BADリクエスト(4XX)次第でSkipされてしまう
+   * TODO BADリクエスト(4XX)次第でSkipされてしまう
    *
    * @param context ContainerRequestContext
    */

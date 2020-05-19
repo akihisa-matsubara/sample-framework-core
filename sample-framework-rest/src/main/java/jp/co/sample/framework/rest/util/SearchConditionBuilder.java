@@ -61,7 +61,7 @@ public class SearchConditionBuilder {
   /**
    * ソート順DOの作成.
    * fieldName[:asc or desc],fieldName...形式のソート文字列を分解し、ソート順DOを作成します.
-   * XXX asc,descを +(asc) or -(desc) で表現させるのもあり
+   * (変更案：asc,descを +(asc) or -(desc) で実装するのもあり)
    *
    * @param sortStr ソート文字列
    * @return {@link SortDo}のリスト

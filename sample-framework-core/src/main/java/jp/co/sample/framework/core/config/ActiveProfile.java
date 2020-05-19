@@ -6,7 +6,6 @@ import jp.co.sample.framework.core.util.MessageUtils;
 import javax.faces.application.ProjectStage;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  * 有効なプロファイル.
@@ -15,15 +14,11 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class ActiveProfile {
 
-  /** キー情報：有効なプロファイル. */
-  private static final String KEY_ACTIVE_PROFILE = "active.profile";
-
-  /** active profile (初期値はut).  */
+  /** 有効なプロファイル.  */
   public static final String PROFILE;
 
   static {
-    String activeProfile = System.getProperty(KEY_ACTIVE_PROFILE);
-    PROFILE = StringUtils.isEmpty(activeProfile) ? Profile.UT : activeProfile;
+    PROFILE = ConfigUtils.getActiveProfile();
     log.info(MessageUtils.getMessage(CoreMessageId.F0004I, PROFILE));
   }
 

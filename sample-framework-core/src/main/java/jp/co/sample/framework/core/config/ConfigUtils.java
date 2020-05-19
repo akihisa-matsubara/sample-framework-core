@@ -1,41 +1,59 @@
 package jp.co.sample.framework.core.config;
 
-import jp.co.sample.framework.core.message.CoreMessageId;
-import jp.co.sample.framework.core.util.MessageUtils;
-import jp.co.sample.framework.core.util.PropertiesUtils;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Properties;
+import jp.co.sample.common.constant.Profile;
+import java.util.Map;
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
+import com.typesafe.config.ConfigValue;
 import lombok.experimental.UtilityClass;
-import org.apache.commons.lang3.math.NumberUtils;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 設定 ユーティリティー.
  */
 @UtilityClass
+@Slf4j
 public class ConfigUtils {
-
-  /** デフォルトファイル名. */
-  private static final String DEFAULT_FILE_NAME = "/application.properties";
 
   /** プロファイル置換文字列. */
   private static final String REPLACE_PROFILE_STR = "profile";
 
   /** プロファイル別ファイル名. */
-  private static final String PROFILE_FILE_NAME = "/application-" + REPLACE_PROFILE_STR + ".properties";
+  private static final String PROFILE_FILE_NAME = "application-" + REPLACE_PROFILE_STR + ".conf";
+
+  /** キー情報：有効なプロファイル. */
+  private static final String KEY_ACTIVE_PROFILE = "active.profile";
 
   /** 設定値が存在しない場合のint型デフォルト値. */
   private static final int UNDEFINED = -1;
 
-  /** プロファイル共通設定ファイル. */
-  private static Properties commonConfiguration;
-
-  /** プロファイル別設定ファイル. */
-  private static Properties profileConfiguration;
+  /** 設定ファイル. */
+  private static Config config;
 
   static {
-    commonConfiguration = PropertiesUtils.get(DEFAULT_FILE_NAME);
-    profileConfiguration = PropertiesUtils.get(PROFILE_FILE_NAME.replaceAll(REPLACE_PROFILE_STR, ActiveProfile.PROFILE));
+    init();
+  }
+
+  /**
+   * 初期化.
+   */
+  private static void init() {
+    config = ConfigFactory.load();
+    Config envConfig = ConfigFactory.load(PROFILE_FILE_NAME.replaceAll(REPLACE_PROFILE_STR, getActiveProfile()));
+    config = envConfig.withFallback(config);
+    dump();
+  }
+
+  /**
+   * 指定されたキーに対応した設定値を取得します.
+   * value属性に値が指定されていない場合、フィールド名をキーに設定します.
+   *
+   * @param key キー
+   * @return 設定値、設定値が存在しない場合はfalse
+   */
+  public static boolean getAsBoolean(String key) {
+    return config.hasPath(key) && config.getBoolean(key);
   }
 
   /**
@@ -45,9 +63,8 @@ public class ConfigUtils {
    * @param key キー
    * @return 設定値、設定値が存在しない場合は-1
    */
-  public static int getAsInteger(String key) {
-    return NumberUtils.toInt(getValue(key), UNDEFINED);
-
+  public static int getAsInt(String key) {
+    return config.hasPath(key) ? config.getInt(key) : UNDEFINED;
   }
 
   /**
@@ -58,44 +75,25 @@ public class ConfigUtils {
    * @return 設定値、設定値が存在しない場合はnull
    */
   public static String getAsString(String key) {
-    return getValue(key);
-
+    return config.getString(key);
   }
 
   /**
-   * 指定されたキーに対応した設定値を取得します.
-   * value属性に値が指定されていない場合、フィールド名をキーに設定します.
+   * 有効なプロファイルを取得します(初期値はut).
    *
-   * @param key キー
-   * @return 設定値、設定値が存在しない場合はnull
+   * @see ActiveProfile#PROFILE
+   * @return 有効なプロファイル
    */
-  public static List<String> getAsList(String key) {
-    return Arrays.asList(getValue(key).split("\\s*,\\s*"));
-
+  static String getActiveProfile() {
+    String activeProfile = getAsString(KEY_ACTIVE_PROFILE);
+    return StringUtils.isEmpty(activeProfile) ? Profile.UT : activeProfile;
   }
 
   /**
-   * 指定されたキーに対応した設定値を取得します.
-   * プロファイル別設定ファイルに設定値が存在しない場合は、プロファイル共通設定ファイルから取得します.
-   *
-   * @param key キー
-   * @return 設定値
-   * @throws IllegalArgumentException 設定値がいずれも存在しない場合
+   * 設定ファイルの情報をダンプします.
    */
-  private static String getValue(String key) {
-    String value = null;
-    if (profileConfiguration != null && profileConfiguration.containsKey(key)) {
-      value = profileConfiguration.getProperty(key);
-    } else if (commonConfiguration != null && commonConfiguration.containsKey(key)) {
-      value = commonConfiguration.getProperty(key);
-    }
-
-    if (value == null) {
-      throw new IllegalArgumentException(MessageUtils.getMessage(CoreMessageId.F0007E, key));
-    }
-
-    return value;
-
+  private static void dump() {
+    config.entrySet().stream().sorted(Map.Entry.<String, ConfigValue>comparingByKey())
+        .forEach(entry -> log.debug("dump - key:{}, value:{}", entry.getKey(), entry.getValue().render()));
   }
-
 }

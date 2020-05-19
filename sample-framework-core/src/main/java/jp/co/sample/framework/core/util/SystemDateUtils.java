@@ -1,14 +1,14 @@
 package jp.co.sample.framework.core.util;
 
-import jp.co.sample.common.util.LocalDateFormatUtils;
 import jp.co.sample.common.util.DateFormat.DateFormatVo;
+import jp.co.sample.common.util.LocalDateFormatUtils;
+import jp.co.sample.framework.core.config.ConfigUtils;
 import jp.co.sample.framework.core.data.dao.SystemDateDao;
 import jp.co.sample.framework.core.message.CoreMessageId;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
-import java.util.Properties;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -28,11 +28,10 @@ import org.apache.commons.lang3.StringUtils;
 @Slf4j
 public class SystemDateUtils {
 
-  /** システム日付プロパティ名. */
-  private static final String SYSTEM_DATE_PROPERTIES_NAME = "/systemDate.properties";
-
-  /** Key値. */
-  private static final String KEY_VALUE = "systemDate";
+  /** キー情報：利用有無. */
+  private static final String KEY_USE = "framework.system-date.use";
+  /** キー情報：みなし日付. */
+  private static final String KEY_DEEMED_DATE = "framework.system-date.deemed-date";
 
   /** システム日付（みなし日付）（プロパティ設定値）. */
   private static Optional<LocalDate> propertyDateOpt = Optional.empty();
@@ -43,6 +42,22 @@ public class SystemDateUtils {
   /** プロパティ読み込み. */
   static {
     init();
+  }
+
+  /**
+   * 初期化.
+   */
+  private static void init() {
+    boolean use = ConfigUtils.getAsBoolean(KEY_USE);
+    String deemedDate = ConfigUtils.getAsString(KEY_DEEMED_DATE);
+    if (!use) {
+      restriction = true;
+
+    } else if (StringUtils.isNotEmpty(deemedDate)) {
+      propertyDateOpt = Optional.of(LocalDateFormatUtils.parse(deemedDate, DateFormatVo.YYYYMMDD_NO_DELIMITER));
+      log.info(MessageUtils.getMessage(CoreMessageId.F0005I, deemedDate));
+
+    }
   }
 
   /**
@@ -65,24 +80,6 @@ public class SystemDateUtils {
     return LocalTime.now().atDate(createDate());
   }
 
-  /**
-   * システム日付（みなし日付）を初期化します.
-   */
-  private static void init() {
-    Properties property = PropertiesUtils.get(SYSTEM_DATE_PROPERTIES_NAME);
-
-    if (property != null) {
-      String deemedDate = property.getProperty(KEY_VALUE);
-      if (StringUtils.isNotEmpty(deemedDate)) {
-        propertyDateOpt = Optional.of(LocalDateFormatUtils.parse(deemedDate, DateFormatVo.YYYYMMDD_NO_DELIMITER));
-        log.info(MessageUtils.getMessage(CoreMessageId.F0005I, deemedDate));
-      }
-
-    } else {
-      // システム日付プロパティがない場合は本番環境とみなし利用を制限する
-      restriction = true;
-    }
-  }
 
   /**
    * システム日付（みなし日付）を作成します.
