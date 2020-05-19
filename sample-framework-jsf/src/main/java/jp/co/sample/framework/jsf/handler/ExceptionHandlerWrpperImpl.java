@@ -1,6 +1,8 @@
 package jp.co.sample.framework.jsf.handler;
 
 import jp.co.sample.framework.core.code.LoggerVo;
+import jp.co.sample.framework.jsf.config.PageConfig;
+import jp.co.sample.framework.jsf.constant.FacesConstant;
 import java.util.Iterator;
 import javax.faces.application.NavigationHandler;
 import javax.faces.application.ProtectedViewException;
@@ -22,8 +24,6 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
 
   /** Error Logger. */
   private static final Logger ERROR_LOGGER = LoggerFactory.getLogger(LoggerVo.ERROR_LOGGER.getCode());
-  /** Redirectパラメーター. */
-  private static final String REDIRECT = "?faces-redirect=true";
 
   /** ExceptionHandler. */
   private final ExceptionHandler wrapped;
@@ -67,7 +67,7 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
       if (th instanceof ProtectedViewException) {
         try {
           NavigationHandler navHandler = fc.getApplication().getNavigationHandler();
-          navHandler.handleNavigation(fc, null, "/pages/error/illegalOperation.xhtml" + REDIRECT);
+          navHandler.handleNavigation(fc, null, PageConfig.getIllegalOperationPage() + FacesConstant.REDIRECT);
           fc.renderResponse();
 
         } finally {

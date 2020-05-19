@@ -1,6 +1,6 @@
 package jp.co.sample.framework.jsf.filter;
 
-import jp.co.sample.framework.core.config.ConfigUtils;
+import jp.co.sample.framework.jsf.config.PageConfig;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -18,9 +18,6 @@ import javax.ws.rs.HttpMethod;
  */
 @WebFilter(filterName = "sessionContextFilter", urlPatterns = "/*")
 public class SessionContextFilter implements Filter {
-
-  /** キー情報：セッションタイムアウトページ. */
-  private static final String KEY_SESSION_TIMEOUT_PAGE = "sessionTimeoutPage";
 
   /**
    * 初期処理.
@@ -49,7 +46,7 @@ public class SessionContextFilter implements Filter {
 
     if (!isValid(httpRequest)) {
       // セッションタイムアウトページへリダイレクト
-      ((HttpServletResponse)response).sendRedirect(httpRequest.getContextPath() + ConfigUtils.getAsString(KEY_SESSION_TIMEOUT_PAGE));
+      ((HttpServletResponse)response).sendRedirect(httpRequest.getContextPath() + PageConfig.getSessionTimeoutPage());
 
     } else {
       chain.doFilter(request, response);

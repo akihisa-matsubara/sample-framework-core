@@ -1,6 +1,7 @@
 package jp.co.sample.framework.jsf.initializer;
 
 import jp.co.sample.framework.core.config.ActiveProfile;
+import jp.co.sample.framework.jsf.constant.FacesConstant;
 import java.util.Set;
 import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContainerInitializer;
@@ -11,9 +12,6 @@ import javax.servlet.ServletException;
  * FacesServletコンテナのイニシャライザー.
  */
 public class FacesServletContainerInitializer implements ServletContainerInitializer {
-
-  /** パラメータ名:FACELETS_REFRESH_PERIOD. */
-  private static final String PARAM_NAME_FACELETS_REFRESH_PERIOD = "javax.faces.FACELETS_REFRESH_PERIOD";
 
   /**
    * <PRE>
@@ -34,7 +32,7 @@ public class FacesServletContainerInitializer implements ServletContainerInitial
 
     // 開発用設定
     if (ProjectStage.Development == projectStage) {
-      ctx.setInitParameter(PARAM_NAME_FACELETS_REFRESH_PERIOD, "1");
+      ctx.setInitParameter(FacesConstant.FACELETS_REFRESH_PERIOD, "1");
     }
   }
 }
