@@ -1,2 +1,4 @@
+.project
+.settings/*.prefs
 /target/
-src/test/assertions
+/src/test/assertions/

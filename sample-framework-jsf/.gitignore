@@ -1,2 +1,6 @@
-target
-src/test/assertions
+.classpath
+.factorypath
+.project
+.settings
+/src/test/assertions/
+/target/
