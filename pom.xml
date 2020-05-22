@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
 
     <parent>
-        <groupId>jp.co.sample</groupId>
+        <groupId>dev.sample</groupId>
         <artifactId>sample-bom</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -18,7 +18,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>jp.co.sample</groupId>
+            <groupId>dev.sample</groupId>
             <artifactId>sample-common-util-jar</artifactId>
         </dependency>
 

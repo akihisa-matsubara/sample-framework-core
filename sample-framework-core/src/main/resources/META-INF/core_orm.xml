@@ -9,5 +9,5 @@
             SELECT sdm FROM SystemDateEntity sdm
         ]]></query>
     </named-query>
-    <entity class="jp.co.sample.framework.core.data.entity.SystemDateEntity" />
+    <entity class="dev.sample.framework.core.data.entity.SystemDateEntity" />
 </entity-mappings>

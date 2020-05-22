@@ -6,7 +6,7 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>jp.co.sample</groupId>
+        <groupId>dev.sample</groupId>
         <artifactId>sample-framework-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -36,7 +36,7 @@
                 <artifactId>assertj-assertions-generator-maven-plugin</artifactId>
                 <configuration>
                     <packages>
-                        <param>jp.co.sample.framework.core.exception.dto</param>
+                        <param>dev.sample.framework.core.exception.dto</param>
                     </packages>
                 </configuration>
             </plugin>
