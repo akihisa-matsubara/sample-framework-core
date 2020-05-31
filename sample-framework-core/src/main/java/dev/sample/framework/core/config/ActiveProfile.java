@@ -32,6 +32,7 @@ public class ActiveProfile {
       case Profile.DEV:
       case Profile.UT:
       case Profile.UIT:
+      case Profile.CI:
       case Profile.IT:
         return ProjectStage.Development;
 

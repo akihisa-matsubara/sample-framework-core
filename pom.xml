@@ -16,6 +16,13 @@
         <module>sample-framework-jsf</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>github-maven</id>
+            <url>https://raw.githubusercontent.com/akihisa-matsubara/maven/mvn-repo/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>dev.sample</groupId>
