@@ -23,4 +23,12 @@ public @interface Config {
   @Nonbinding
   String value() default "";
 
+  /**
+   * インジェクションしたいJava Beanの型.
+   *
+   * @return Java Beanの型
+   */
+  @Nonbinding
+  Class<? extends Configurable> type() default Configurable.class;
+
 }

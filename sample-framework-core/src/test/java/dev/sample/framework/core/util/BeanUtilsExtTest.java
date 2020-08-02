@@ -1,8 +1,10 @@
 package dev.sample.framework.core.util;
 
-import static dev.sample.framework.test.dto.assertj.MulitpleTypeDtoAssert.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
+import dev.sample.common.code.CodeVo;
+import dev.sample.common.code.GenderVo;
+import dev.sample.framework.test.dto.MultipleTypeDto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Timestamp;
@@ -21,10 +23,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import dev.sample.common.code.CodeVo;
-import dev.sample.common.code.GenderVo;
-import dev.sample.framework.core.util.BeanUtilsExt;
-import dev.sample.framework.test.dto.MulitpleTypeDto;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class BeanUtilsExtTest {
@@ -36,10 +34,10 @@ class BeanUtilsExtTest {
     @DisplayName("正常系 - 初期値コピー時の値／インスタンスの比較")
     void testInitialValue() {
       // --- setup -----
-      MulitpleTypeDto origDto = new MulitpleTypeDto();
+      MultipleTypeDto origDto = new MultipleTypeDto();
 
       // --- execute ---
-      MulitpleTypeDto result = BeanUtilsExt.copyProperties(MulitpleTypeDto.class, origDto);
+      MultipleTypeDto result = BeanUtilsExt.copyProperties(MultipleTypeDto.class, origDto);
 
       // --- verify ----
       assertAll("コピー結果検証",
@@ -89,7 +87,7 @@ class BeanUtilsExtTest {
       BigDecimal bigDecimalValue = BigDecimal.ONE.divide(new BigDecimal(3), 6, RoundingMode.HALF_UP);
 
       CodeVo codeValue = GenderVo.FEMALE;
-      MulitpleTypeDto origDto = MulitpleTypeDto.builder()
+      MultipleTypeDto origDto = MultipleTypeDto.builder()
           .booleanValue(booleanValue)
           .byteValue(byteValue)
           .charValue(charValue)
@@ -121,7 +119,7 @@ class BeanUtilsExtTest {
           .build();
 
       // --- execute ---
-      MulitpleTypeDto result = BeanUtilsExt.copyProperties(MulitpleTypeDto.class, origDto);
+      MultipleTypeDto result = BeanUtilsExt.copyProperties(MultipleTypeDto.class, origDto);
 
       // --- verify ----
       assertAll("コピー結果検証",
@@ -163,10 +161,10 @@ class BeanUtilsExtTest {
     @DisplayName("正常系 - 初期値コピー時の値／インスタンスの比較")
     void testInitialValue() {
       // --- setup -----
-      MulitpleTypeDto origDto = new MulitpleTypeDto();
+      MultipleTypeDto origDto = new MultipleTypeDto();
 
       // --- execute ---
-      MulitpleTypeDto result = BeanUtilsExt.deepCopy(origDto);
+      MultipleTypeDto result = BeanUtilsExt.deepCopy(origDto);
 
       // --- verify ----
       assertAll("コピー結果検証",
@@ -216,7 +214,7 @@ class BeanUtilsExtTest {
       BigDecimal bigDecimalValue = BigDecimal.ONE.divide(new BigDecimal(3), 6, RoundingMode.HALF_UP);
 
       CodeVo codeValue = GenderVo.FEMALE;
-      MulitpleTypeDto origDto = MulitpleTypeDto.builder()
+      MultipleTypeDto origDto = MultipleTypeDto.builder()
           .booleanValue(booleanValue)
           .byteValue(byteValue)
           .charValue(charValue)
@@ -248,7 +246,7 @@ class BeanUtilsExtTest {
           .build();
 
       // --- execute ---
-      MulitpleTypeDto result = BeanUtilsExt.deepCopy(origDto);
+      MultipleTypeDto result = BeanUtilsExt.deepCopy(origDto);
 
       // --- verify ----
       assertAll("コピー結果検証",

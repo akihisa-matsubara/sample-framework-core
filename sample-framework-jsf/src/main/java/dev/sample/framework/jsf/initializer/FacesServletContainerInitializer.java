@@ -1,12 +1,12 @@
 package dev.sample.framework.jsf.initializer;
 
+import dev.sample.framework.core.config.ActiveProfile;
+import dev.sample.framework.jsf.constant.FacesConstant;
 import java.util.Set;
 import javax.faces.application.ProjectStage;
 import javax.servlet.ServletContainerInitializer;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import dev.sample.framework.core.config.ActiveProfile;
-import dev.sample.framework.jsf.constant.FacesConstant;
 
 /**
  * FacesServletコンテナのイニシャライザー.

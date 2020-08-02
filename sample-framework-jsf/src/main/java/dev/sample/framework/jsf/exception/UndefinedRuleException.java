@@ -1,14 +1,12 @@
 package dev.sample.framework.jsf.exception;
 
-import java.util.List;
-import lombok.Getter;
 import dev.sample.framework.core.exception.ApplicationException;
 import dev.sample.framework.core.exception.dto.ErrorMessage;
+import java.util.List;
 
 /**
  * 未定義ルール例外.
  */
-@Getter
 public class UndefinedRuleException extends ApplicationException {
 
   /** serialVersionUID. */

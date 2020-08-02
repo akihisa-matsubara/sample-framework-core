@@ -1,5 +1,10 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.common.util.DateFormat.DateFormatVo;
+import dev.sample.common.util.LocalDateFormatUtils;
+import dev.sample.framework.core.config.ConfigUtils;
+import dev.sample.framework.core.data.dao.SystemDateDao;
+import dev.sample.framework.core.message.CoreMessageId;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,11 +12,6 @@ import java.util.Optional;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import dev.sample.common.util.LocalDateFormatUtils;
-import dev.sample.common.util.DateFormat.DateFormatVo;
-import dev.sample.framework.core.config.ConfigUtils;
-import dev.sample.framework.core.data.dao.SystemDateDao;
-import dev.sample.framework.core.message.CoreMessageId;
 
 /**
  * <PRE>
@@ -29,9 +29,9 @@ import dev.sample.framework.core.message.CoreMessageId;
 public class SystemDateUtils {
 
   /** キー情報：利用有無. */
-  private static final String KEY_USE = "framework.system-date.use";
+  private static final String KEY_USE = "framework.systemDate.use";
   /** キー情報：みなし日付. */
-  private static final String KEY_DEEMED_DATE = "framework.system-date.deemed-date";
+  private static final String KEY_DEEMED_DATE = "framework.systemDate.deemedDate";
 
   /** システム日付（みなし日付）（プロパティ設定値）. */
   private static Optional<LocalDate> propertyDateOpt = Optional.empty();
@@ -39,7 +39,7 @@ public class SystemDateUtils {
   /** 利用制限. */
   private static boolean restriction;
 
-  /** プロパティ読み込み. */
+  // プロパティ読み込み
   static {
     init();
   }

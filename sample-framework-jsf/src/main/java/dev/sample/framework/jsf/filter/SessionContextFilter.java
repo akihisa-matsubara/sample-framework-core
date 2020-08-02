@@ -1,5 +1,6 @@
 package dev.sample.framework.jsf.filter;
 
+import dev.sample.framework.jsf.config.PageConfig;
 import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,7 +12,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.HttpMethod;
-import dev.sample.framework.jsf.config.PageConfig;
 
 /**
  * セッション・コンテキストフィルター.
@@ -46,7 +46,7 @@ public class SessionContextFilter implements Filter {
 
     if (!isValid(httpRequest)) {
       // セッションタイムアウトページへリダイレクト
-      ((HttpServletResponse)response).sendRedirect(httpRequest.getContextPath() + PageConfig.getSessionTimeoutPage());
+      ((HttpServletResponse) response).sendRedirect(httpRequest.getContextPath() + PageConfig.getSessionTimeoutPage());
 
     } else {
       chain.doFilter(request, response);

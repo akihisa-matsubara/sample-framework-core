@@ -1,13 +1,13 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.framework.core.exception.SystemException;
+import dev.sample.framework.core.exception.dto.ErrorMessage;
+import dev.sample.framework.core.message.CoreMessageId;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.SerializationUtils;
-import dev.sample.framework.core.exception.ApplicationException;
-import dev.sample.framework.core.exception.dto.ErrorMessage;
-import dev.sample.framework.core.message.CoreMessageId;
 
 /**
  * Beanユーティリティー.
@@ -31,7 +31,7 @@ public class BeanUtilsExt {
       return dest;
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
         | SecurityException e) {
-      throw new ApplicationException(e, new ErrorMessage(CoreMessageId.F0001E, type.getSimpleName(), orig.getClass().getSimpleName()));
+      throw new SystemException(e, new ErrorMessage(CoreMessageId.F0001E, type.getSimpleName(), orig.getClass().getSimpleName()));
     }
   }
 
@@ -45,7 +45,7 @@ public class BeanUtilsExt {
     try {
       BeanUtils.copyProperties(dest, orig);
     } catch (IllegalAccessException | InvocationTargetException e) {
-      throw new ApplicationException(e, new ErrorMessage(CoreMessageId.F0001E, dest.getClass().getSimpleName(), orig.getClass().getSimpleName()));
+      throw new SystemException(e, new ErrorMessage(CoreMessageId.F0001E, dest.getClass().getSimpleName(), orig.getClass().getSimpleName()));
     }
   }
 

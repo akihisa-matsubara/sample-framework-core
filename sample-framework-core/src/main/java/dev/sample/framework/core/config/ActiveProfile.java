@@ -1,20 +1,22 @@
 package dev.sample.framework.core.config;
 
-import javax.faces.application.ProjectStage;
-import lombok.experimental.UtilityClass;
-import lombok.extern.slf4j.Slf4j;
 import dev.sample.common.constant.Profile;
 import dev.sample.framework.core.message.CoreMessageId;
 import dev.sample.framework.core.util.MessageUtils;
+import javax.faces.application.ProjectStage;
+import lombok.experimental.UtilityClass;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 有効なプロファイル.
+ * {@code jvm.options} にアプリケーション内で動作させるプロファイルを指定してください.
+ * ex. {@code -Dactive.profile=dev}
  */
 @UtilityClass
 @Slf4j
 public class ActiveProfile {
 
-  /** 有効なプロファイル.  */
+  /** 有効なプロファイル. */
   public static final String PROFILE;
 
   static {

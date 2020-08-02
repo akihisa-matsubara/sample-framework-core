@@ -1,12 +1,12 @@
 package dev.sample.framework.core.data.entitymanager;
 
+import dev.sample.framework.core.constant.PersistenceUnit;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import dev.sample.framework.core.constant.PersistenceUnit;
 
 /**
  * EntityManagerプロデューサークラス.

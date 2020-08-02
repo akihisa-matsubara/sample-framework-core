@@ -1,8 +1,8 @@
 package dev.sample.framework.core.code;
 
+import dev.sample.common.code.CodeVo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import dev.sample.common.code.CodeVo;
 
 /**
  * ロガーVO.

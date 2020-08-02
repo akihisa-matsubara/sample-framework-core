@@ -1,9 +1,9 @@
 package dev.sample.framework.core.exception.dto;
 
+import dev.sample.framework.core.message.MessageId;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
-import dev.sample.framework.core.message.MessageId;
 
 /**
  * エラーメッセージ.

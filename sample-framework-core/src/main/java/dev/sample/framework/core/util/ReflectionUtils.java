@@ -1,7 +1,11 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.framework.core.exception.SystemException;
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -26,13 +30,13 @@ public class ReflectionUtils {
     List<Field> fieldsListWithAnnotation = FieldUtils.getFieldsListWithAnnotation(target.getClass(), annotation);
     if (!fieldsListWithAnnotation.isEmpty()) {
       Field field = fieldsListWithAnnotation.get(0);
-      field.setAccessible(true);
 
       try {
-        return (T)field.get(target);
+        PropertyDescriptor pd = new PropertyDescriptor(field.getName(), target.getClass());
+        return (T) pd.getReadMethod().invoke(target);
 
-      } catch (IllegalAccessException iae) {
-        throw new IllegalArgumentException(iae);
+      } catch (IntrospectionException | IllegalAccessException | InvocationTargetException e) {
+        throw new SystemException(e);
 
       }
     }

@@ -1,11 +1,11 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.framework.core.message.CoreMessageId;
 import java.io.InputStream;
 import java.util.Objects;
 import java.util.Properties;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import dev.sample.framework.core.message.CoreMessageId;
 
 /**
  * プロパティ・ユーティリティー.

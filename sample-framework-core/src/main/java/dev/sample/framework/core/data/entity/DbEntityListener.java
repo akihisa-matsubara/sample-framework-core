@@ -19,6 +19,7 @@ public class DbEntityListener {
 
   /**
    * Insert前処理.
+   * 
    * @param entity DB基底Entity
    */
   @PrePersist
@@ -30,6 +31,7 @@ public class DbEntityListener {
 
   /**
    * Update前処理.
+   * 
    * @param entity DB基底Entity
    */
   @PreUpdate

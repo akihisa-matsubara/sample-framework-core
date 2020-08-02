@@ -1,5 +1,6 @@
 package dev.sample.framework.jsf.rule;
 
+import dev.sample.framework.core.util.CdiUtils;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
@@ -12,7 +13,6 @@ import javax.inject.Named;
 import com.typesafe.config.ConfigBeanFactory;
 import com.typesafe.config.ConfigFactory;
 import lombok.extern.slf4j.Slf4j;
-import dev.sample.framework.core.util.CdiUtils;
 
 /**
  * 表示制御.

@@ -1,5 +1,6 @@
 package dev.sample.framework.test.dto;
 
+import dev.sample.common.code.CodeVo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -14,13 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import dev.sample.common.code.CodeVo;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Data
-public class MulitpleTypeDto implements Serializable {
+public class MultipleTypeDto implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private boolean booleanValue;

@@ -9,7 +9,7 @@ import javax.persistence.Converter;
  * 相互型変換コンバーター(Entity: LocalDate, Database: java.sql.Date).
  */
 @Converter(autoApply = true)
-public class LocalDateToDateConverter implements AttributeConverter<LocalDate, Date> {
+public class LocalDateConverter implements AttributeConverter<LocalDate, Date> {
 
   /**
    * Entityに格納されている値をDatabaseに格納されるデータ型に変換します.

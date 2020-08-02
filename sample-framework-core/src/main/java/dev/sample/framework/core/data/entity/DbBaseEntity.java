@@ -1,5 +1,6 @@
 package dev.sample.framework.core.data.entity;
 
+import dev.sample.framework.core.data.converter.LocalDateTimeConverter;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
@@ -7,7 +8,6 @@ import javax.persistence.Convert;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 import lombok.Data;
-import dev.sample.framework.core.data.converter.LocalDateTimeToTimestampConverter;
 
 /**
  * DB基底Entity.
@@ -30,7 +30,7 @@ public abstract class DbBaseEntity implements Serializable {
 
   /** 作成日時. */
   @Column(name = "CREATION_DATE", updatable = false)
-  @Convert(converter = LocalDateTimeToTimestampConverter.class)
+  @Convert(converter = LocalDateTimeConverter.class)
   private LocalDateTime creationDate;
 
   /** 更新ユーザーID. */
@@ -39,7 +39,7 @@ public abstract class DbBaseEntity implements Serializable {
 
   /** 更新日時. */
   @Column(name = "UPDATED_DATE")
-  @Convert(converter = LocalDateTimeToTimestampConverter.class)
+  @Convert(converter = LocalDateTimeConverter.class)
   private LocalDateTime updatedDate;
 
 }

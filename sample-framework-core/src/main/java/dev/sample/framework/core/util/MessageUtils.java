@@ -1,14 +1,14 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.common.constant.SystemProperty;
+import dev.sample.framework.core.exception.dto.ErrorMessage;
+import dev.sample.framework.core.message.CoreMessageId;
+import dev.sample.framework.core.message.MessageId;
 import java.text.MessageFormat;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
-import dev.sample.common.constant.SystemProperty;
-import dev.sample.framework.core.exception.dto.ErrorMessage;
-import dev.sample.framework.core.message.CoreMessageId;
-import dev.sample.framework.core.message.MessageId;
 
 /**
  * メッセージ・ユーティリティー.
@@ -57,7 +57,7 @@ public class MessageUtils {
    * @return メッセージ
    */
   public static String getMessage(MessageId messageId, String... params) {
-    return MessageFormat.format(MessageUtils.getMessageTemplate(messageId), (Object[] )params);
+    return MessageFormat.format(MessageUtils.getMessageTemplate(messageId), (Object[]) params);
   }
 
   /**

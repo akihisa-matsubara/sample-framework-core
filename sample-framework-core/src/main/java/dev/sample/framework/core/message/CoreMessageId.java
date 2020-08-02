@@ -46,6 +46,10 @@ public enum CoreMessageId implements MessageId {
   F1003E,
   /** {0}: 日付の変換に失敗しました。. */
   F1004E,
+  /** ファイルアップロードに失敗しました。key={0}. */
+  F1005E,
+  /** {0} Byteを越えるファイルはアップロードできません。({1} Byte). */
+  F1006E,
 
   // U～ 利用統計ログ
   /** {0} start {1}. */

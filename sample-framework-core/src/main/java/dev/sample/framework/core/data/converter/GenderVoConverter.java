@@ -1,15 +1,15 @@
 package dev.sample.framework.core.data.converter;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import dev.sample.common.code.GenderVo;
+import dev.sample.common.util.CodeUtils;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
- * 相互型変換コンバーター(Entity: LocalDateTime, Database: Timestamp).
+ * 相互型変換コンバーター(Entity: GenderVo, Database: String).
  */
 @Converter(autoApply = true)
-public class LocalDateTimeToTimestampConverter implements AttributeConverter<LocalDateTime, Timestamp> {
+public class GenderVoConverter implements AttributeConverter<GenderVo, String> {
 
   /**
    * Entityに格納されている値をDatabaseに格納されるデータ型に変換します.
@@ -17,9 +17,8 @@ public class LocalDateTimeToTimestampConverter implements AttributeConverter<Loc
    * @param attribute 変換されるEntity属性値
    * @return Database列に格納される変換データ
    */
-  @Override
-  public Timestamp convertToDatabaseColumn(LocalDateTime attribute) {
-    return attribute == null ? null : Timestamp.valueOf(attribute);
+  public String convertToDatabaseColumn(GenderVo attribute) {
+    return attribute == null ? null : attribute.getCode();
   }
 
   /**
@@ -28,9 +27,8 @@ public class LocalDateTimeToTimestampConverter implements AttributeConverter<Loc
    * @param attribute 変換されるDatabase属性値
    * @return Entityに格納される変換データ
    */
-  @Override
-  public LocalDateTime convertToEntityAttribute(Timestamp attribute) {
-    return attribute == null ? null : attribute.toLocalDateTime();
+  public GenderVo convertToEntityAttribute(String attribute) {
+    return attribute == null ? null : CodeUtils.decode(attribute, GenderVo.class);
   }
 
 }

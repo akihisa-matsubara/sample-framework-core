@@ -1,8 +1,8 @@
 package dev.sample.framework.core.exception;
 
+import dev.sample.framework.core.exception.dto.ErrorMessage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import dev.sample.framework.core.exception.dto.ErrorMessage;
 
 /**
  * システム基底例外.

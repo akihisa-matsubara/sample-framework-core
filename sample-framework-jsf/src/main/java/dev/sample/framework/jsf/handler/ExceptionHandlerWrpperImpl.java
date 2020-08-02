@@ -1,7 +1,11 @@
 package dev.sample.framework.jsf.handler;
 
+import dev.sample.framework.core.code.LoggerVo;
+import dev.sample.framework.jsf.config.PageConfig;
+import dev.sample.framework.jsf.constant.FacesConstant;
 import java.util.Iterator;
 import javax.faces.application.NavigationHandler;
+import javax.faces.application.ProjectStage;
 import javax.faces.application.ProtectedViewException;
 import javax.faces.context.ExceptionHandler;
 import javax.faces.context.ExceptionHandlerWrapper;
@@ -12,9 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import dev.sample.framework.core.code.LoggerVo;
-import dev.sample.framework.jsf.config.PageConfig;
-import dev.sample.framework.jsf.constant.FacesConstant;
 
 /**
  * ExceptionHandlerWrapper実装.
@@ -52,6 +53,8 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
    * <ul>
    * <li>発生した例外をエラーログに出力します.</li>
    * <li>ProtectedViewExceptionの場合、不正操作画面へ遷移します.</li>
+   * <li>それ以外の場合、{@code web.xml}に定義したエラーページへ遷移します.<br>
+   * {@link ProjectStage}をDevelopmentに設定している場合、デバッグ用のエラーページへ遷移します.</li>
    * </ul>
    */
   @Override
@@ -64,7 +67,6 @@ public class ExceptionHandlerWrpperImpl extends ExceptionHandlerWrapper {
       ERROR_LOGGER.error(ExceptionUtils.getStackTrace(th));
       log.error("{}:{}", th.getClass().getSimpleName(), th.getMessage());
 
-      // TODO システム例外ページ
       if (th instanceof ProtectedViewException) {
         try {
           NavigationHandler navHandler = fc.getApplication().getNavigationHandler();

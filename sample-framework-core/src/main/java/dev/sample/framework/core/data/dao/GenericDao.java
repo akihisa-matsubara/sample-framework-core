@@ -1,5 +1,8 @@
 package dev.sample.framework.core.data.dao;
 
+import dev.sample.framework.core.data.condition.SearchConditionDo;
+import dev.sample.framework.core.util.QueryBuilder;
+import dev.sample.framework.core.util.ReflectionUtils;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
@@ -8,9 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Query;
-import dev.sample.framework.core.data.condition.SearchConditionDo;
-import dev.sample.framework.core.util.QueryBuilder;
-import dev.sample.framework.core.util.ReflectionUtils;
 
 /**
  * mydb汎用Dao.

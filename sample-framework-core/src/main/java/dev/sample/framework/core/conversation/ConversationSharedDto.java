@@ -1,5 +1,7 @@
 package dev.sample.framework.core.conversation;
 
+import dev.sample.framework.core.message.CoreMessageId;
+import dev.sample.framework.core.util.MessageUtils;
 import java.io.Serializable;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -7,8 +9,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.ConversationScoped;
 import lombok.extern.slf4j.Slf4j;
-import dev.sample.framework.core.message.CoreMessageId;
-import dev.sample.framework.core.util.MessageUtils;
 
 /**
  * Conversation共有データ.

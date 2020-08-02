@@ -1,11 +1,11 @@
 package dev.sample.framework.core.interceptor;
 
+import dev.sample.framework.core.logger.UsageStatisticsLogger;
 import java.io.Serializable;
 import javax.annotation.Priority;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import dev.sample.framework.core.logger.UsageStatisticsLogger;
 
 /**
  * 利用統計 ロギングインターセプター.

@@ -1,5 +1,10 @@
 package dev.sample.framework.jsf.converter;
 
+import dev.sample.common.util.DateFormat.DateFormatVo;
+import dev.sample.common.util.LocalDateFormatUtils;
+import dev.sample.framework.core.message.CoreMessageId;
+import dev.sample.framework.core.util.MessageUtils;
+import dev.sample.framework.jsf.constant.ComponentAttribute;
 import java.time.LocalDate;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -7,11 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
-import dev.sample.common.util.LocalDateFormatUtils;
-import dev.sample.common.util.DateFormat.DateFormatVo;
-import dev.sample.framework.core.message.CoreMessageId;
-import dev.sample.framework.core.util.MessageUtils;
-import dev.sample.framework.jsf.constant.ComponentAttribute;
 
 /**
  * LocalDate型のコンバーター.
@@ -34,7 +34,7 @@ public class LocalDateConverter implements Converter {
     try {
       obj = LocalDateFormatUtils.parse(value, DateFormatVo.YYYYMMDD);
     } catch (Exception e) {
-      String label = (String)component.getAttributes().get(ComponentAttribute.LABEL);
+      String label = (String) component.getAttributes().get(ComponentAttribute.LABEL);
       throw new ConverterException(new FacesMessage(MessageUtils.getMessage(CoreMessageId.F1004E, label)), e);
     }
     return obj;

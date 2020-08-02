@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<included>
+    <!-- 標準出力 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${DETAIL_FORMAT}</pattern>
+            <charset>${DEFAULT_CHARSET}</charset>
+        </encoder>
+    </appender>
+</included>

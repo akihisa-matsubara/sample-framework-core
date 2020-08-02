@@ -1,10 +1,10 @@
 package dev.sample.framework.core.data.dao;
 
+import dev.sample.framework.core.data.entitymanager.MyDb;
 import java.io.Serializable;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import lombok.Getter;
-import dev.sample.framework.core.data.entitymanager.MyDb;
 
 /**
  * mydb汎用Dao.

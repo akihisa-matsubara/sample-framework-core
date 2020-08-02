@@ -1,12 +1,12 @@
 package dev.sample.framework.core.util;
 
+import dev.sample.framework.core.data.condition.SearchConditionDo;
+import dev.sample.framework.core.data.condition.SortDo;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.StringUtils;
-import dev.sample.framework.core.data.condition.SearchConditionDo;
-import dev.sample.framework.core.data.condition.SortDo;
 
 /**
  * クエリビルダー.

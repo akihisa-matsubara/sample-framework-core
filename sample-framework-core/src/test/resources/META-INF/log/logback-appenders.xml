@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<included>
+    <include resource="META-INF/log/logback-access-appender.xml" />
+    <include resource="META-INF/log/logback-console-appender.xml" />
+    <include resource="META-INF/log/logback-debug-appender.xml" />
+    <include resource="META-INF/log/logback-error-appender.xml" />
+    <include resource="META-INF/log/logback-statistics-appender.xml" />
+</included>

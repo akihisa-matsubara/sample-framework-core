@@ -1,7 +1,7 @@
 package dev.sample.framework.core.data.dao;
 
-import javax.enterprise.context.ApplicationScoped;
 import dev.sample.framework.core.data.entity.SystemDateEntity;
+import javax.enterprise.context.ApplicationScoped;
 
 /**
  * システム日付マスタDao.
