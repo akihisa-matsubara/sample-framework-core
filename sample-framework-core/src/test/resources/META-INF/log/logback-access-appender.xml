@@ -3,13 +3,13 @@
 <included>
     <!-- アクセスログ -->
     <appender name="ACCESS_LOG_APPENDER" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOG_DIR}/${LOG_FILE_NAME_HEADER}access.log</file>
+        <file>${LOG_DIR}/access.log</file>
         <encoder>
             <pattern>${SIMPLE_FORMAT}</pattern>
             <charset>${DEFAULT_CHARSET}</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOG_DIR}/${LOG_FILE_NAME_HEADER}access.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <fileNamePattern>${LOG_DIR}/access.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
             <maxHistory>7</maxHistory>
             <cleanHistoryOnStart>true</cleanHistoryOnStart>
         </rollingPolicy>

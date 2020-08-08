@@ -12,4 +12,11 @@ public interface FileUploadCallback {
    */
   void uploadedFile(FileUploadParameterDto parameterDto);
 
+  /**
+   * ファイルアップロードキャンセル処理.
+   *
+   * @param clientId ID
+   */
+  void cancelUploadFile(String clientId);
+
 }

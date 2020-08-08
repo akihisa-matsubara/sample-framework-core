@@ -28,7 +28,7 @@ public class FileUploadBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   /** キー情報：許容ファイルサイズ. */
-  private static final String KEY_LIMIT_SIZE = "framework.upload.limitSize";
+  private static final String KEY_LIMIT_SIZE = "framework.file.upload.limitSize";
 
   /** upload file map (key:clientId, value:upload file). */
   private Map<String, Part> uploadFileMap = new ConcurrentHashMap<>();
@@ -56,6 +56,7 @@ public class FileUploadBean implements Serializable {
     }
     if (uploadFile.getSize() == 0) {
       // キャンセル
+      callback.cancelUploadFile(key);
       return;
     }
 

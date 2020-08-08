@@ -5,5 +5,6 @@
     <include resource="META-INF/log/logback-console-appender.xml" />
     <include resource="META-INF/log/logback-debug-appender.xml" />
     <include resource="META-INF/log/logback-error-appender.xml" />
+    <include resource="META-INF/log/logback-performance-appender.xml" />
     <include resource="META-INF/log/logback-statistics-appender.xml" />
 </included>

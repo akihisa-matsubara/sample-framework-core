@@ -1,6 +1,7 @@
 package dev.sample.framework.core.config;
 
 import static org.assertj.core.api.Assertions.*;
+import dev.sample.common.code.GenderVo;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
@@ -9,7 +10,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import dev.sample.common.code.GenderVo;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class ConfigUtilsTest {
@@ -68,6 +68,26 @@ class ConfigUtilsTest {
       int actual = ConfigUtils.getAsInt(key);
 
       // --- verify ----
+      assertThat(actual).as(desc).isEqualTo(expected);
+    }
+  }
+
+  @DisplayName("getAsEnum(String key)のテスト")
+  @Nested
+  class GetAsEnum {
+    @DisplayName("正常系")
+    @ParameterizedTest
+    @CsvSource({
+        "Enumを取得できていること,                         FEMALE, test.common.ConfigUtilsTest.GetAsEnum",
+        "キーが見つからない場合はnullを取得できていること, ,       hoge",
+    })
+    void test(String desc, String expectedValue, String key) {
+      // --- setup -----
+      // --- execute ---
+      GenderVo actual = ConfigUtils.getAsEnum(key, GenderVo.class);
+
+      // --- verify ----
+      GenderVo expected = expectedValue == null ? null : GenderVo.valueOf(expectedValue);
       assertThat(actual).as(desc).isEqualTo(expected);
     }
   }

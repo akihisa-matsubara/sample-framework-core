@@ -69,6 +69,16 @@ public class ConfigUtils {
   }
 
   /**
+   * 指定されたキーに対応したEnum型の設定値を取得します.
+   *
+   * @param key キー
+   * @return 設定値、キーが存在しない場合はnull
+   */
+  public static <T extends Enum<T>> T getAsEnum(String key, Class<T> enumClass) {
+    return config.hasPath(key) ? config.getEnum(enumClass, key) : null;
+  }
+
+  /**
    * 指定されたキーに対応したString型の設定値を取得します.
    *
    * @param key キー

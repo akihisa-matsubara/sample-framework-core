@@ -1,12 +1,12 @@
 package dev.sample.framework.core.config;
 
+import dev.sample.common.code.GenderVo;
 import java.time.Duration;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import dev.sample.common.code.GenderVo;
 
 @AllArgsConstructor
 @NoArgsConstructor
